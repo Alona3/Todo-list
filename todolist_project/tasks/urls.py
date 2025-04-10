@@ -1,24 +1,19 @@
 from django.urls import path
 from . import views
 
-
 urlpatterns = [
-    # Головна сторінка — список задач
-    path('', views.task_list, name='task_list'),
 
-    # Додавання, оновлення, видалення задач
-    path('tasks/add/', views.task_create, name='task_create'),
-    path('tasks/<int:pk>/update/', views.task_update, name='task_update'),
-    path('tasks/<int:pk>/delete/', views.task_delete, name='task_delete'),
+    path('', views.TaskListView.as_view(), name='task_list'),
 
-    # Зміна статусу задачі
-    path('tasks/<int:pk>/toggle/', views.toggle_task_status, name='task_toggle'),
+    path('tasks/add/', views.TaskCreateView.as_view(), name='task_create'),
+    path('tasks/<int:pk>/update/', views.TaskUpdateView.as_view(), name='task_update'),
+    path('tasks/<int:pk>/delete/', views.TaskDeleteView.as_view(), name='task_delete'),
 
-    # Сторінка тегів
-    path('tags/', views.tag_list, name='tag_list'),
+    path('tasks/<int:pk>/toggle/', views.ToggleTaskStatusView.as_view(), name='task_toggle'),
 
-    # Додавання, оновлення, видалення тегів
-    path('tags/add/', views.tag_create, name='tag_create'),
-    path('tags/<int:pk>/update/', views.tag_update, name='tag_update'),
-    path('tags/<int:pk>/delete/', views.tag_delete, name='tag_delete'),
+    path('tags/', views.TagListView.as_view(), name='tag_list'),
+
+    path('tags/add/', views.TagCreateView.as_view(), name='tag_create'),
+    path('tags/<int:pk>/update/', views.TagUpdateView.as_view(), name='tag_update'),
+    path('tags/<int:pk>/delete/', views.TagDeleteView.as_view(), name='tag_delete'),
 ]
