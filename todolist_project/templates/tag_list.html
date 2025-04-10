@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Теги</h1>
+<a href="{% url 'tag_create' %}">➕ Додати тег</a>
+<ul>
+    {% for tag in tags %}
+        <li>
+            {{ tag.name }}
+            <a href="{% url 'tag_update' tag.pk %}">✏️</a>
+            <a href="{% url 'tag_delete' tag.pk %}">🗑️</a>
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}

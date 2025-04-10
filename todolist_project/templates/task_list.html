@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Задачі</h1>
+<a href="{% url 'task_create' %}">➕ Додати задачу</a>
+<ul>
+    {% for task in tasks %}
+        <li>
+            <strong>{% if task.is_done %}✅{% else %}🕒{% endif %}</strong>
+            {{ task.content }} (Створено: {{ task.created|date:"Y-m-d H:i" }})
+            {% if task.deadline %} | До: {{ task.deadline|date:"Y-m-d H:i" }}{% endif %}
+            {% if task.tags.all %}
+                <br>Теги:
+                {% for tag in task.tags.all %}
+                    <span>[{{ tag.name }}]</span>
+                {% endfor %}
+            {% endif %}
+            <br>
+            <a href="{% url 'task_update' task.pk %}">✏️ Редагувати</a>
+            <a href="{% url 'task_delete' task.pk %}">🗑️ Видалити</a>
+            <a href="{% url 'task_toggle' task.pk %}">
+                {% if task.is_done %}↩️ Відмінити{% else %}✅ Завершити{% endif %}
+            </a>
+        </li>
+        <hr>
+    {% endfor %}
+</ul>
+{% endblock %}
+

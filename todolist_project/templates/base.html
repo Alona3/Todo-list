@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Todo List</title>
+    <style>
+        body { font-family: Arial, sans-serif; display: flex; margin: 0; }
+        aside { width: 200px; background: #f0f0f0; padding: 20px; height: 100vh; }
+        main { flex-grow: 1; padding: 20px; }
+        a { text-decoration: none; display: block; margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+    <aside>
+        <h2>Меню</h2>
+        <a href="{% url 'task_list' %}">🏠 Головна</a>
+        <a href="{% url 'tag_list' %}">🏷️ Теги</a>
+    </aside>
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+</body>
+</html>
